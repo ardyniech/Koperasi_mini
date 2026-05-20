@@ -1,0 +1,47 @@
+export const styles = {
+  header: {
+    padding: '20px 20px 16px',
+    borderBottom: '1px solid rgba(255,255,255,0.2)',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 700,
+    color: '#1d1d1f',
+    margin: 0,
+    marginBottom: 4,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: '#86868b',
+    margin: 0,
+  },
+  scrollableContent: {
+    flex: 1,
+    overflowY: 'auto' as const,
+    padding: '20px',
+    WebkitOverflowScrolling: 'touch' as const,
+  },
+  fixedBottom: {
+    position: 'fixed' as const,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: '16px 20px',
+    background: 'rgba(255,255,255,0.9)',
+    backdropFilter: 'blur(20px)',
+    borderTop: '1px solid rgba(0,0,0,0.05)',
+    zIndex: 100,
+  },
+  backButton: {
+    background: 'linear-gradient(135deg, #007aff 0%, #5856d6 100%)',
+    color: 'white',
+    border: 'none',
+    borderRadius: 24,
+    padding: '14px 24px',
+    fontSize: 16,
+    fontWeight: 600,
+    cursor: 'pointer',
+    width: '100%',
+    boxShadow: '0 4px 12px rgba(0,122,255,0.3)',
+  },
+};

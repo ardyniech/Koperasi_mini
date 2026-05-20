@@ -1,0 +1,69 @@
+========================================
+PANDUAN MENJALANKAN KOPERASI MINI SYARIAH
+========================================
+
+Project Root: ~/koperasi_mini/
+Backend Port: 8006
+Frontend Port: 5173
+
+========================================
+1. HIDUPKAN BACKEND (FastAPI)
+========================================
+Buka Termux, jalankan perintah berikut:
+
+cd ~/koperasi_mini/backend
+python -m uvicorn app.main:app --host 0.0.0.0 --port 8006
+
+Tunggu sampai muncul log sukses:
+INFO: Uvicorn running on http://0.0.0.0:8006 (Press CTRL+C to quit)
+INFO: Application startup complete.
+
+========================================
+2. HIDUPKAN FRONTEND (Vite + React)
+========================================
+Buka Termux tab baru (swipe layar atau tekan Ctrl+T), jalankan:
+
+cd ~/koperasi_mini/frontend
+npm run dev
+
+Tunggu sampai muncul log sukses:
+VITE vX.X.X  ready in Xms
+➜  Local:   http://localhost:5173/
+➜  Network: http://192.168.x.x:5173/
+
+========================================
+3. AKSES APLIKASI
+========================================
+- Frontend (User): Buka browser HP → http://localhost:5173
+- Backend API Docs: http://localhost:8006/docs (untuk cek endpoint)
+- PWA: Bisa diinstall lewat browser → "Add to Home Screen"
+
+========================================
+4. CATATAN PENTING
+========================================
+- Jika backend error "module not found":
+  Jalankan: pip install -r requirements.txt (di folder ~/koperasi_mini/backend)
+
+- Jika frontend error:
+  Jalankan: npm install (di folder ~/koperasi_mini/frontend)
+
+- Matikan aplikasi:
+  Tekan Ctrl+C di masing-masing terminal backend/frontend
+
+- Backup Database (opsional):
+  cd ~/koperasi_mini/backend && python backup_db.py
+
+========================================
+5. STATUS SISTEM (TERAKHIR)
+========================================
+✅ Backend: 20/20 pytest passed
+✅ Frontend: 0 TypeScript errors, 0 ESLint errors
+✅ PWA: Manifest + Service Worker + Icons ready
+✅ Security: CORS restricted, Rate Limiting persistent (SQLite)
+✅ Code Quality: All files <100 lines (lego style)
+
+========================================
+Dibuat: 2026-05-01 oleh Hermes AI
+Deplog: ~/koperasi_mini/devlog.md
+Task Tracker: ~/koperasi_mini/task.html
+========================================

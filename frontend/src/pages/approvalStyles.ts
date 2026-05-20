@@ -1,0 +1,93 @@
+export const styles = {
+  header: {
+    padding: '20px 20px 16px',
+    borderBottom: '1px solid rgba(255,255,255,0.2)',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 700,
+    color: '#1d1d1f',
+    margin: 0,
+  },
+  scrollableContent: {
+    flex: 1,
+    overflowY: 'auto' as const,
+    padding: '20px',
+    WebkitOverflowScrolling: 'touch' as const,
+  },
+  loading: {
+    textAlign: 'center' as const,
+    padding: 40,
+    color: '#86868b',
+    fontSize: 16,
+  },
+  error: {
+    background: 'rgba(255,59,48,0.1)',
+    color: '#ff3b30',
+    padding: '12px 16px',
+    borderRadius: 12,
+    marginBottom: 16,
+    fontSize: 14,
+    display: 'flex',
+    alignItems: 'center' as const,
+    gap: 8,
+  },
+  errorIcon: {
+    fontSize: 16,
+  },
+  success: {
+    background: 'rgba(52,199,89,0.1)',
+    color: '#34c759',
+    padding: '12px 16px',
+    borderRadius: 12,
+    marginBottom: 16,
+    fontSize: 14,
+    display: 'flex',
+    alignItems: 'center' as const,
+    gap: 8,
+  },
+  successIcon: {
+    fontSize: 16,
+  },
+  summaryBox: {
+    background: 'rgba(255,255,255,0.85)',
+    backdropFilter: 'blur(20px)',
+    borderRadius: 16,
+    padding: 20,
+    marginBottom: 20,
+    display: 'flex',
+    justifyContent: 'space-around' as const,
+    border: '1px solid rgba(255,255,255,0.3)',
+  },
+  summaryItem: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: 4,
+  },
+  summaryLabel: {
+    fontSize: 12,
+    color: '#86868b',
+    fontWeight: 500,
+  },
+  summaryValue: {
+    fontSize: 18,
+    fontWeight: 600,
+    color: '#1d1d1f',
+  },
+  summaryValueHighlight: {
+    fontSize: 18,
+    fontWeight: 600,
+    color: '#007aff',
+  },
+  list: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: 16,
+  },
+  empty: {
+    textAlign: 'center' as const,
+    padding: 40,
+    color: '#86868b',
+    fontSize: 16,
+  },
+};

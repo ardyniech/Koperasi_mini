@@ -1,0 +1,272 @@
+<h1 id="task-koperasi-mini---hasil-audit-tukang-ngomel">TASK KOPERASI
+MINI - HASIL AUDIT TUKANG NGOMEL</h1>
+<p><strong>Tanggal Audit:</strong> 01 Mei 2026<br />
+<strong>Skor Total:</strong> 54/100 🟠 (BELUM LAYAK DEPLOY!)<br />
+<strong>Auditor:</strong> Tim Tukang Ngomel (BAWEL Mode)</p>
+<hr />
+<h2 id="status-per-divisi">📊 STATUS PER DIVISI</h2>
+<table>
+<thead>
+<tr>
+<th>Divisi</th>
+<th>Skor</th>
+<th>Status</th>
+<th>Progress</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Security</td>
+<td>45/100 🔴</td>
+<td>Bahaya!</td>
+<td>[___] 0%</td>
+</tr>
+<tr>
+<td>Business Logic</td>
+<td>50/100 🟠</td>
+<td>Perlu Fix!</td>
+<td>[___] 0%</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>65/100 🟡</td>
+<td>Lumayan</td>
+<td>[___] 0%</td>
+</tr>
+<tr>
+<td>Code Quality</td>
+<td>55/100 🟡</td>
+<td>Perlu Refactor!</td>
+<td>[___] 0%</td>
+</tr>
+<tr>
+<td>UI/UX</td>
+<td>70/100 🟢</td>
+<td>Bagus</td>
+<td>[___] 0%</td>
+</tr>
+<tr>
+<td>Operational</td>
+<td>40/100 🔴</td>
+<td>Kritis!</td>
+<td>[___] 0%</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="prioritas-1-minggu-ini---wajib-kelar">🎯 PRIORITAS 1 (MINGGU INI
+- WAJIB KELAR!)</h2>
+<h3 id="business-logic---fix-bug-angsuran-fiktif">1. 💰 Business Logic -
+Fix Bug Angsuran Fiktif 🔴</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="" /><strong>BUG
+FATAL:</strong> Saldo kurang tetep status “SUDAH_BAYAR” di
+<code>angsuran.py</code> baris 68-79</label></li>
+<li><label><input type="checkbox"
+checked="" /><strong>Perbaikan:</strong> Kalau saldo kurang, kembalikan
+error “Saldo tidak cukup”, jangan mark “SUDAH_BAYAR”</label></li>
+<li><label><input type="checkbox" checked="" /><strong>Fix Schema
+Conflict:</strong> <code>Simpanan</code> schema tolak nominal negatif
+(<code>gt=0</code>), tapi kode mau masukin negatif</label></li>
+<li><label><input type="checkbox" checked="" /><strong>Add Transaction
+Rollback:</strong> Pakai <code>try-except</code> dan
+<code>db.rollback()</code> kalau ada error</label></li>
+</ul>
+<h3 id="security---fix-jwt-expiry">2. 🛡️ Security - Fix JWT Expiry
+🔴</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="" /><strong>KRITIS:</strong>
+Member dapet 30 HARI (harusnya 2 jam!) di
+<code>security.py</code></label></li>
+<li><label><input type="checkbox" checked="" /><strong>Fix:</strong>
+Member = 120 menit (2 jam), Admin = 60 menit (1 jam)</label></li>
+<li><label><input type="checkbox" checked="" /><strong>Cek:</strong>
+<code>create_access_token()</code> function di
+<code>security.py</code></label></li>
+<li><label><input type="checkbox" checked="" /><strong>Fix
+deprecated:</strong> <code>datetime.utcnow()</code> →
+<code>datetime.now(timezone.utc)</code> in <code>security.py</code>,
+<code>pinjaman.py</code>, <code>angsuran.py</code>,
+<code>members.py</code></label></li>
+</ul>
+<h3 id="performance---tambah-db-index">3. ⚡ Performance - Tambah DB
+Index 🔴</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="" /><strong>KRITIS:</strong>
+Foreign keys gak ada <code>index=True</code>!</label></li>
+<li><label><input type="checkbox" checked="" /><strong>Fix di
+models:</strong></label>
+<ul class="task-list">
+<li><label><input type="checkbox" checked="" /><code>anggota_id</code>
+di <code>Pinjaman</code> model → <code>index=True</code></label></li>
+<li><label><input type="checkbox" checked="" /><code>anggota_id</code>
+di <code>Angsuran</code> model → <code>index=True</code></label></li>
+<li><label><input type="checkbox" checked="" /><code>pinjaman_id</code>
+di <code>Angsuran</code> model → <code>index=True</code></label></li>
+<li><label><input type="checkbox" checked="" /><code>anggota_id</code>
+di <code>Simpanan</code> model → <code>index=True</code></label></li>
+<li><label><input type="checkbox" checked="" /><code>anggota_id</code>
+di <code>Funding</code> model → <code>index=True</code></label></li>
+</ul></li>
+<li><label><input type="checkbox"
+checked="" /><strong>Verified:</strong> 13 tests passed after
+changes</label></li>
+</ul>
+<h3 id="code-quality---refactor-file-frontend-100-baris">4. 🏗️ Code
+Quality - Refactor File Frontend &gt;100 Baris 🟡</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>SettingsManage.tsx</strong>
+(224 baris) → Pecah jadi komponen kecil</label></li>
+<li><label><input
+type="checkbox" /><strong>LandingPageManage.tsx</strong> (198 baris) →
+Pecah jadi komponen kecil</label></li>
+<li><label><input type="checkbox" /><strong>LandingPage.tsx</strong>
+(189 baris) → Pecah jadi komponen kecil</label></li>
+<li><label><input type="checkbox" /><strong>Riwayat.tsx</strong> (179
+baris) → Pecah jadi komponen kecil</label></li>
+<li><label><input type="checkbox" /><strong>RegisterForm.tsx</strong>
+(166 baris) → Pecah jadi komponen kecil</label></li>
+<li><label><input type="checkbox" /><strong>BrandingTab.tsx</strong>
+(162 baris) → Pecah jadi komponen kecil</label></li>
+<li><label><input type="checkbox" /><strong>AnggotaTable.tsx</strong>
+(153 baris) → Pecah jadi komponen kecil</label></li>
+<li><label><input type="checkbox"
+checked="" /><strong>LoginForm.tsx</strong> (150 baris) → Pecah jadi
+komponen (EmailField, PasswordField, SubmitButton)</label></li>
+</ul>
+<hr />
+<h2 id="prioritas-2-bulan-ini">🎯 PRIORITAS 2 (BULAN INI)</h2>
+<h3 id="operational---setup-backup-logging">5. 🚨 Operational - Setup
+Backup &amp; Logging 🔴</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>Backup:</strong> Cron job
+backup SQLite <code>koperasi_mini.db</code> harian</label></li>
+<li><label><input type="checkbox" /><strong>Logging:</strong> Ganti
+<code>print()</code> statements ke <code>logging</code> module yang
+proper</label></li>
+<li><label><input type="checkbox" /><strong>Devlog:</strong> Update
+<code>devlog.md</code> rutin (minimal 1x per 30 menit kerja
+aktif)</label></li>
+</ul>
+<h3 id="security---brute-force-otp">6. 🛡️ Security - Brute Force &amp;
+OTP 🔴</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>Brute Force
+Protection:</strong> Rate limiting login (max 5x gagal)</label></li>
+<li><label><input type="checkbox" /><strong>OTP Implementation:</strong>
+WhatsApp/Email buat reset password &amp; pinjaman &gt;10M</label></li>
+<li><label><input type="checkbox" /><strong>.gitignore:</strong> Buat
+file <code>.gitignore</code>, masukin <code>.env</code>,
+<code>__pycache__/</code>, <code>*.pyc</code>, <code>*.db</code>,
+<code>node_modules/</code></label></li>
+</ul>
+<h3 id="performance---optimasi-token-dashboard">7. ⚡ Performance -
+Optimasi Token &amp; Dashboard 🟡</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>Fix Token Creation:</strong>
+3 detik itu LAMA! Cek <code>jwt.encode()</code> atau
+<code>datetime.utcnow()</code></label></li>
+<li><label><input type="checkbox" /><strong>Fix Deprecated
+datetime:</strong> Ganti semua <code>datetime.utcnow()</code> ke
+<code>datetime.now(datetime.UTC)</code></label></li>
+<li><label><input type="checkbox" /><strong>Optimasi Dashboard:</strong>
+Query 5x di <code>/me/dashboard</code> gabungin jadi 1 atau pakai
+<code>asyncio.gather</code></label></li>
+<li><label><input type="checkbox" /><strong>Add Pagination:</strong>
+Jangan pakai <code>len(query.all())</code>, pakai
+<code>query.count()</code> di DB level</label></li>
+</ul>
+<h3 id="business-logic---workflow-validation">8. 💰 Business Logic -
+Workflow &amp; Validation 🟠</h3>
+<ul class="task-list">
+<li><label><input type="checkbox" /><strong>Pinjaman Approval:</strong>
+Jangan auto-accept! Status DIAJUKAN → DITERIMA → AKTIF</label></li>
+<li><label><input type="checkbox" /><strong>Limit Pinjaman:</strong>
+Validasi maksimal (misal 50M), wajib OTP &gt;10M</label></li>
+<li><label><input type="checkbox" /><strong>Dead Code:</strong> Hapus
+<code>calculate_denda()</code> yang ngak kepakai di
+<code>angsuran.py</code></label></li>
+<li><label><input type="checkbox" /><strong>Edge Cases:</strong> Tambah
+test input minus, nol, saldo kurang, dll</label></li>
+</ul>
+<hr />
+<h2 id="detail-temuan-per-divisi-referensi">📝 DETAIL TEMUAN PER DIVISI
+(REFERENSI)</h2>
+<h3 id="security-45100">🛡️ SECURITY (45/100)</h3>
+<p><strong>Temuwan Kritis:</strong> - [ ] JWT Member expiry 30 hari
+(harus 2 jam) - [ ] OTP ilang ditelan bumi (nda ada di code) - [ ] Brute
+force protection = kosong</p>
+<p><strong>Temuwan Penting:</strong> - [ ] .gitignore ndak ada - [ ] 61x
+deprecated <code>datetime.utcnow()</code> warnings - [ ] Password reset
+endpoints = nol</p>
+<p><strong>Yang Sudah Bagus:</strong> - [x] Semua API butuh auth
+(kecuali register/login) - [x] Role-Based Access Control jalan - [x]
+Password hashing pakai pbkdf2_sha256 - [x] 13 tests passed</p>
+<hr />
+<h3 id="business-logic-50100">💰 BUSINESS LOGIC (50/100)</h3>
+<p><strong>Temuwan Kritis:</strong> - [ ] Bug angsuran fiktif (saldo
+kurang tetep “SUDAH_BAYAR”) - [ ] Schema Simpanan bentrok sama
+implementasi (nominal negatif) - [ ] Limit pinjaman &gt;10M ndak ada
+validasi - [ ] Status pinjaman ndak konsisten (auto-accept semua)</p>
+<p><strong>Temuwan Penting:</strong> - [ ] Dead code:
+<code>calculate_denda()</code> - [ ] Interest calculation perlu
+dokumentasi (per tahun/bulan?) - [ ] Dashboard endpoint banyak query
+(5x) - [ ] Input edge cases kurang test</p>
+<p><strong>Yang Sudah Bagus:</strong> - [x] Pydantic v2 schema
+validation - [x] TypeScript strict mode frontend - [x] Interest
+calculation syariah (flat per tahun) - [x] Auto-generate angsuran - [x]
+Status check pinjaman lunas</p>
+<hr />
+<h3 id="performance-65100">⚡ PERFORMANCE (65/100)</h3>
+<p><strong>Temuwan Kritis:</strong> - [ ] No database indexes on foreign
+keys - [ ] Token creation butuh 3 detik - [ ] Dashboard endpoint query 5
+kali</p>
+<p><strong>Temuwan Penting:</strong> - [ ] API response time mendekati
+200ms (166ms pas invalid token) - [ ] Deprecated datetime.utcnow() makan
+performance? - [ ] SQLite di production (single-threaded writes) - [ ]
+No pagination di beberapa endpoint</p>
+<p><strong>Yang Sudah Bagus:</strong> - [x] API response time &lt;200ms
+(mayoritas 5-8ms) - [x] SQLAlchemy ORM rapi - [x] Tests jalan cepat (13
+tests dalam 1.96s) - [x] Frontend Vite + React efisien - [x] Pydantic v2
+lebih cepat</p>
+<hr />
+<h3 id="code-quality-55100">🏗️ CODE QUALITY (55/100)</h3>
+<p><strong>Temuwan Kritis:</strong> - [ ] Langgar aturan lego style
+(file &gt;100 baris) - [ ] Technical debt: 61x deprecation warnings - [
+] No .gitignore</p>
+<p><strong>Temuwan Penting:</strong> - [ ] No static code analysis
+(pylint/eslint report) - [ ] Dependencies ndak di-cek CVE - [ ] Modular
+architecture perlu review</p>
+<p><strong>Yang Sudah Bagus:</strong> - [x] Pydantic v2 dipake - [x]
+TypeScript strict + ESLint - [x] Struktur code rapi (models, services,
+routes)</p>
+<hr />
+<h3 id="uiux-70100">🎨 UI/UX (70/100)</h3>
+<p><strong>Yang Sudah Bagus:</strong> - [x] Apple-style gradient buttons
+(<code>linear-gradient(135deg, #007aff 0%, #5856d6 100%)</code>) - [x]
+Border radius 12px konsisten - [x] High contrast input (background
+putih, text <code>#1d1d1f</code>) - [x] Box shadow yang cakep</p>
+<p><strong>Temuwan Kecil:</strong> - [ ] Belum cek responsive di
+tablet/HP lain - [ ] Loading state kurang fancy</p>
+<hr />
+<h3 id="operational-40100">🚨 OPERATIONAL (40/100)</h3>
+<p><strong>Temuwan Kritis:</strong> - [ ] Devlog MINTA AMAT! (cuma 1
+entry) - [ ] Logging = print() statements (nda ada logging module) - [ ]
+Backup strategy = NOL!</p>
+<p><strong>Temuwan Penting:</strong> - [ ] Monitoring &amp; alerting
+kurang - [ ] Deployment strategy kurang jelas - [ ] Error tracking ndak
+ada</p>
+<p><strong>Yang Sudah Bagus:</strong> - [x] Uvicorn running smooth di
+Termux - [x] Frontend production build ada di <code>/dist</code></p>
+<hr />
+<h2 id="progress-tracker">📊 PROGRESS TRACKER</h2>
+<p><strong>Minggu Ini (Prioritas 1):</strong> - [ ] Business Logic - Bug
+Angsuran (25%) - [ ] Security - JWT Expiry (25%) - [ ] Performance - DB
+Index (25%) - [ ] Code Quality - Refactor Files (25%)</p>
+<p><strong>Bulan Ini (Prioritas 2):</strong> - [ ] Operational - Backup
+&amp; Logging (0%) - [ ] Security - Brute Force &amp; OTP (0%) - [ ]
+Performance - Optimasi (0%) - [ ] Business Logic - Workflow (0%)</p>
+<hr />
+<p><strong>LAST UPDATED:</strong> 01 Mei 2026 - 00:52 WIB<br />
+<strong>CURRENT WORKING ON:</strong> ___ (isi setelah mulai kerja)<br />
+<strong>NEXT TASK:</strong> Fix Bug Angsuran Fiktif (Prioritas 1.1)</p>

@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+.env
+venv/
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# OS
+.DS_Store
+Thumbs.db
+# Build
+/dist
+/build
+# Logs
+*.log
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+# Test coverage
+htmlcov/
+.coverage
+.coverage.*
+*.cover
+*.py,cover

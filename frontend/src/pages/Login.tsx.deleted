@@ -1,0 +1,43 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import DashboardLayout from '../components/organisms/DashboardLayout';
+import LoginForm from '../components/molecules/LoginForm';
+
+export default function Login() {
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const handleLoginSuccess = (token: string) => {
+    localStorage.setItem('token', token);
+    console.log('Login sukses, redirect ke dashboard...');
+    // Simple redirect
+    navigate('/dashboard');
+  };;
+
+  return (
+    <DashboardLayout
+      title="Login"
+      guideNote="Masuk untuk mengakses sistem"
+      showBackButton={true}
+      onBack={() => navigate('/')}
+    >
+      <div className="p-2 space-y-2">
+        <div className="max-w-md mx-auto">
+          <div className="glass-card rounded-3xl p-6 shadow-xl border border-white/30">
+            <LoginForm
+              onLoginSuccess={handleLoginSuccess}
+              onError={setError}
+            />
+          </div>
+        </div>
+
+        {error && (
+          <div className="max-w-md mx-auto bg-red-50 border-l-4 border-red-500 p-4 rounded-lg flex items-center gap-3">
+            <span className="text-xl">⚠️</span>
+            <p className="text-sm text-red-700">{error}</p>
+          </div>
+        )}
+      </div>
+    </DashboardLayout>
+  );
+}
