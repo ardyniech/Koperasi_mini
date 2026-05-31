@@ -55,7 +55,7 @@ export default function Register() {
         navigate('/');
       }, 2000);
     } catch (err: unknown) {
-      let errorMessage = 'Registrasi gagal. Silakan coba lagi.';
+      let errorMessage = err.response?.data?.message || 'Registrasi gagal. Silakan coba lagi.';
       if (err instanceof AxiosError) {
         errorMessage = err.response?.data?.detail || errorMessage;
       }
